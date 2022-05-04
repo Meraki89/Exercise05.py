@@ -3,7 +3,7 @@ def power(a, b):
         return -1
     if b == 1:
         return a
-    return a * power(a, b - 1)
+    return int(a * power(a, b - 1))
 
 
 # I assume that end is one bigger than the last allowed index.
@@ -57,3 +57,4 @@ class HashTable:
 
     def get_size(self):
         return len(self.buckets)
+
