@@ -30,7 +30,7 @@ class HashTable:
         self.size = 0
 
     def __str__(self):
-        return self.buckets
+        return repr(self.buckets)
 
     def __my_hash(self, element):
         if isinstance(element, int):
@@ -38,12 +38,15 @@ class HashTable:
         else:
             return len(element)
 
+    def get_bucket(self, element):
+        return self.buckets[self.__my_hash(element) % len(self.buckets)]
+
     def insert(self, element):
-        self.buckets[self.__my_hash(element) % len(self.buckets)].append(element)
+        self.get_bucket(element).append(element)
         self.size += 1
 
     def get_element(self, element):
-        bucket = self.buckets[self.__my_hash(element) % len(self.buckets)]
+        bucket = self.get_bucket(element)
 
         if element not in bucket:
             return False
@@ -57,4 +60,3 @@ class HashTable:
 
     def get_size(self):
         return len(self.buckets)
-
